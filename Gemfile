@@ -39,3 +39,14 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# https://github.com/kaminari/kaminari
+gem "kaminari", "~> 1.2"
+
+# https://github.com/activerecord-hackery/ransack
+gem "ransack", "~> 2.4"
+
+# https://github.com/faker-ruby/faker
+gem "faker", "~> 2.18"
+
+gem "bcrypt", "~> 3.1"
