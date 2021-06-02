@@ -2,6 +2,8 @@ module Api
   module V1
     class UsersController < ApplicationController
       before_action :set_user, only: [:show, :update, :destroy]
+      before_action :check_owner, only: [:update, :destroy]
+
       # GET /user/:id
       def show
         render json: @user
@@ -40,6 +42,11 @@ module Api
 
       def user_params
         params.require(:user).permit(:email, :password)
+      end
+
+      protected
+      def check_owner
+        head :forbidden unless @user.id == current_user&.id
       end
     end
   end
