@@ -71,6 +71,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    jwt (2.2.3)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -170,6 +171,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   faker (~> 2.18)
+  jwt (~> 2.2)
   kaminari (~> 1.2)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)

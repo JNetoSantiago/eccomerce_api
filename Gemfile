@@ -50,3 +50,5 @@ gem "ransack", "~> 2.4"
 gem "faker", "~> 2.18"
 
 gem "bcrypt", "~> 3.1"
+
+gem "jwt", "~> 2.2"
