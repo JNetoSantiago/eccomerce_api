@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :set_user, only: [:show, :update]
+      before_action :set_user, only: [:show, :update, :destroy]
       # GET /user/:id
       def show
         render json: @user
@@ -25,6 +25,12 @@ module Api
         else
           render json: @user.errors, status: :unprocessable_entity
         end
+      end
+
+      # DELETE /user/:id
+      def destroy
+        @user.destroy
+        head 204
       end
 
       private
