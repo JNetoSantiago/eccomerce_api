@@ -24,6 +24,14 @@ module Api
         assert_response :created
       end
 
+      test "should not create when invalid params are sent" do
+        post api_v1_users_url,
+        params: { user: { email: 'invalid', password: '123456' } },
+        as: :json
+
+        assert_response :unprocessable_entity
+      end
+
       test "should update user" do
         patch api_v1_user_url(@user),
         params: { user: { email: 'new@email.com', password: '123456' } },
