@@ -14,7 +14,7 @@ module Api
         assert_equal @user.email, json_response['email']
       end
 
-      test "should be able to create a user" do
+      test "should create user" do
         assert_difference "User.count" do
           post api_v1_users_url, 
           params: { user: { email: 'so_and_so@email.com', password: '123456' } },
@@ -22,6 +22,22 @@ module Api
         end
 
         assert_response :created
+      end
+
+      test "should update user" do
+        patch api_v1_user_url(@user),
+        params: { user: { email: 'new@email.com', password: '123456' } },
+        as: :json
+
+        assert_response :success
+      end
+
+      test "should not update when invalid params are sent" do
+        patch api_v1_user_url(@user),
+        params: { user: { email: 'invalid', password: '123456' } },
+        as: :json
+        
+        assert_response :unprocessable_entity
       end
     end
   end
