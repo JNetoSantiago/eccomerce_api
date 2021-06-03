@@ -18,6 +18,8 @@ Project Dependencies:
 
 * Bcrypt
 
+* Fast JSON API - https://github.com/Netflix/fast_jsonapi
+
 Configuration:
 
 Database creation:
