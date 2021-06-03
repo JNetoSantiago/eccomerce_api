@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: TV Samsung
+  price: 299.90
+  published: false
+  user: one
+  category: one
+
+two:
+  title: MyString
+  price: 9.99
+  published: false
+  user: two
+  category: two
