@@ -10,8 +10,8 @@ module Api
         get api_v1_category_url(@category.id), as: :json
         assert_response :success
 
-        json_response = JSON.parse(self.response.body)
-        assert_equal @category.description, json_response['description']
+        json_response = JSON.parse(self.response.body, symbolize_names: true)
+        assert_equal @category.description, json_response.dig(:data, :attributes, :description)
       end
 
       test 'should create category' do

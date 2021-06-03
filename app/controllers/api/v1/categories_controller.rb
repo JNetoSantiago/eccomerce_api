@@ -5,14 +5,14 @@ module Api
 
       # GET /category/:id
       def show
-        render json: @category
+        render json: CategorySerializer.new(@category).serializable_hash
       end
 
       # POST /categories
       def create
         @category = Category.new category_params
         if @category.save
-          render json: @category, status: :created
+          render json: CategorySerializer.new(@category).serializable_hash, status: :created
         else
           render json: @category.errors, status: :unprocessable_entity
         end
@@ -21,7 +21,7 @@ module Api
       # PATCH/PUT /category/:id
       def update
         if @category.update(category_params)
-          render json: @category, status: :ok
+          render json: CategorySerializer.new(@category).serializable_hash, status: :ok
         else
           render json: @category.errors, status: :unprocessable_entity
         end
