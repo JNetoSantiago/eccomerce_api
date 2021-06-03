@@ -1,7 +1,7 @@
 module Api
   module V1
     class CategoriesController < ApplicationController
-      before_action :set_category, only: [:show, :update]
+      before_action :set_category, only: [:show, :update, :destroy]
 
       # GET /category/:id
       def show
@@ -25,6 +25,12 @@ module Api
         else
           render json: @category.errors, status: :unprocessable_entity
         end
+      end
+
+      # DELETE /category/:id
+      def destroy
+        @category.destroy
+        head 204
       end
 
       private

@@ -45,6 +45,13 @@ module Api
 
         assert_response :unprocessable_entity
       end
+
+      test 'should destroy category' do
+        assert_difference "Category.count", -1 do
+          delete api_v1_category_url(@category), as: :json
+        end
+        assert_response :no_content
+      end
     end
   end
 end
