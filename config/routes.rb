@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show, :create, :update, :destroy]
       resources :tokens, only: [:create]
       resources :categories, only: [:show, :create, :update, :destroy]
-      resources :products, only: [:show]
+      resources :products, only: [:index, :show]
     end
   end
 end
