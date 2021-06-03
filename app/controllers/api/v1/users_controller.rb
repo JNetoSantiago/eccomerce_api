@@ -6,7 +6,7 @@ module Api
 
       # GET /user/:id
       def show
-        render json: @user
+        render json: UserSerializer.new(@user).serializable_hash
       end
 
       # POST /users
@@ -14,7 +14,7 @@ module Api
         @user = User.new user_params
 
         if @user.save
-          render json: @user, status: :created
+          render json: UserSerializer.new(@user).serializable_hash, status: :created
         else
           render json: @user.errors, status: :unprocessable_entity
         end
@@ -23,7 +23,7 @@ module Api
       # PATCH/PUT /user/:id
       def update
         if @user.update(user_params)
-          render json: @user, status: :ok
+          render json: UserSerializer.new(@user).serializable_hash, status: :ok
         else
           render json: @user.errors, status: :unprocessable_entity
         end

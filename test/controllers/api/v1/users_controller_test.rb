@@ -10,8 +10,8 @@ module Api
         get api_v1_user_url(@user), as: :json
         assert_response :success
 
-        json_response = JSON.parse(self.response.body)
-        assert_equal @user.email, json_response['email']
+        json_response = JSON.parse(self.response.body, symbolize_names: true)
+        assert_equal @user.email, json_response.dig(:data, :attributes, :email)
       end
 
       test "should create user" do
