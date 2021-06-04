@@ -58,6 +58,24 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_equal products(:three).id.to_s, json_response.dig(:data, 0, :id)
   end
 
+  test 'should list for user' do
+    get "#{api_v1_products_url}?q[user_id_eq]=#{users(:one).id.to_s}", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+    assert_equal json_response.dig(:data).count, 1
+    assert_equal products(:one).id.to_s, json_response.dig(:data, 0, :id)
+  end
+
+  test 'should list for category' do
+    get "#{api_v1_products_url}?q[category_id_eq]=#{categories(:one).id.to_s}", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+    assert_equal json_response.dig(:data).count, 1
+    assert_equal products(:one).id.to_s, json_response.dig(:data, 0, :id)
+  end
+
   test 'should show product' do
     get api_v1_product_url(@product), as: :json
     assert_response :success
