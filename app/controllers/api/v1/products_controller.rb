@@ -14,7 +14,8 @@ module Api
 
       # GET /product/:id
       def show
-        render json: ProductSerializer.new(@product).serializable_hash
+        options = { include: [:user, :category] }
+        render json: ProductSerializer.new(@product, options).serializable_hash
       end
 
       # POST /products

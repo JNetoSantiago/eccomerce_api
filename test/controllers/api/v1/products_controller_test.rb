@@ -17,6 +17,12 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     
     json_response = JSON.parse(self.response.body, symbolize_names: true)
     assert_equal @product.title, json_response.dig(:data, :attributes, :title)
+
+    assert_equal @product.user.id.to_s, json_response.dig(:data, :relationships, :user, :data, :id)
+    assert_equal @product.user.email, json_response.dig(:included, 1, :attributes, :email)
+    
+    assert_equal @product.category.id.to_s, json_response.dig(:data, :relationships, :category, :data, :id)
+    assert_equal @product.category.description, json_response.dig(:included, 0, :attributes, :description)
   end
 
   test 'should create product' do
