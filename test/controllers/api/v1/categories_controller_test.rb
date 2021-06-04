@@ -12,6 +12,9 @@ module Api
 
         json_response = JSON.parse(self.response.body, symbolize_names: true)
         assert_equal @category.description, json_response.dig(:data, :attributes, :description)
+
+        assert_equal @category.products.first.id.to_s, json_response.dig(:data, :relationships, :products, :data, 0, :id)
+        assert_equal @category.products.first.title, json_response.dig(:included, 0, :attributes, :title)
       end
 
       test 'should create category' do

@@ -5,7 +5,8 @@ module Api
 
       # GET /category/:id
       def show
-        render json: CategorySerializer.new(@category).serializable_hash
+        options = { include: [:products] }
+        render json: CategorySerializer.new(@category, options).serializable_hash
       end
 
       # POST /categories
