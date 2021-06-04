@@ -2,9 +2,9 @@
 module Api
   module V1
     class ProductsController < ApplicationController
-      before_action :set_product, only: [:show, :update]
-      before_action :check_login, only: [:create]
-      before_action :check_owner, only: [:update]
+      before_action :set_product, only: [:show, :update, :destroy]
+      before_action :check_login, only: [:create, :update, :destroy]
+      before_action :check_owner, only: [:update, :destroy]
 
       # GET /products
       def index
@@ -34,6 +34,12 @@ module Api
         else
           render json: { errors: @product.errors }, status: :unprocessable_entity
         end
+      end
+
+      # DELETE /product/:id
+      def destroy
+        @product.destroy
+        head 204
       end
 
       private

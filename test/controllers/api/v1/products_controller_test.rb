@@ -77,4 +77,25 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :forbidden
   end
+
+  test 'should destroy product' do
+    assert_difference "Product.count", -1 do
+      delete api_v1_product_url(@product),
+      headers: { Authorization: JsonWebToken.encode(user_id: @product.user.id) },
+      as: :json
+    end
+    assert_response :no_content
+  end
+
+  test 'should not destroy product if is not authenticated' do
+    delete api_v1_product_url(@product), as: :json
+
+    assert_response :forbidden
+  end
+
+  test 'should not destroy product if user is not owner' do
+    delete api_v1_product_url(@product), as: :json
+
+    assert_response :forbidden
+  end
 end
