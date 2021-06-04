@@ -11,6 +11,53 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should list all products filtering by title' do
+    get "#{api_v1_products_url}?q[title_cont]=#{@product.title}", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+
+    assert_equal json_response.dig(:data).count, 1
+    assert_equal @product.id.to_s, json_response.dig(:data, 0, :id)
+  end
+
+  test 'should list all published products' do
+    get "#{api_v1_products_url}?q[published_true]=true", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+
+    assert_equal json_response.dig(:data).count, 2
+    assert_equal [products(:one).id.to_s, products(:two).id.to_s], [json_response.dig(:data, 0, :id), json_response.dig(:data, 1, :id)]
+  end
+
+  test 'should list for price less than or equal to 299.90' do
+    get "#{api_v1_products_url}?q[price_lteq_any]=299.90", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+    assert_equal json_response.dig(:data).count, 1
+    assert_equal products(:one).id.to_s, json_response.dig(:data, 0, :id)
+  end
+
+  test 'should list for price greater than or equal to 500' do
+    get "#{api_v1_products_url}?q[price_gteq_any]=500", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+    assert_equal json_response.dig(:data).count, 2
+    assert_equal [products(:two).id.to_s, products(:three).id.to_s], [json_response.dig(:data, 0, :id), json_response.dig(:data, 1, :id)]
+  end
+
+  test 'should list for range price' do
+    get "#{api_v1_products_url}?q[price_lteq_any]=600&q[price_gteq_any]=500", as: :json
+    assert_response :success
+
+    json_response = JSON.parse(self.response.body, symbolize_names: true)
+    assert_equal json_response.dig(:data).count, 1
+    assert_equal products(:three).id.to_s, json_response.dig(:data, 0, :id)
+  end
+
   test 'should show product' do
     get api_v1_product_url(@product), as: :json
     assert_response :success

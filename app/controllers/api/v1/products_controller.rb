@@ -8,7 +8,7 @@ module Api
 
       # GET /products
       def index
-        @products = Product.all
+        @products = Product.ransack(params[:q]).result
         render json: ProductSerializer.new(@products).serializable_hash
       end
 

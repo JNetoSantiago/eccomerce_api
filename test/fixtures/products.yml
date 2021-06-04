@@ -3,13 +3,20 @@
 one:
   title: TV Samsung
   price: 299.90
-  published: false
+  published: true
   user: one
   category: one
 
 two:
-  title: MyString
-  price: 9.99
+  title: Celular Xiaomi
+  price: 1959.90
+  published: true
+  user: two
+  category: two
+
+three:
+  title: TV LG 4K
+  price: 500.90
   published: false
   user: two
   category: two
