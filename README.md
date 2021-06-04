@@ -21,10 +21,23 @@ Project Dependencies:
 * Fast JSON API - https://github.com/Netflix/fast_jsonapi
 
 Configuration:
+```
+$ git clone git@github.com:JNetoSantiago/eccomerce_api.git
+$ bundle install
+$ yarn install
+
+```
 
 Database creation:
+```
+$ rails db:create
+```
 
 Database initialization:
+```
+$ rails db:migrate
+$ rails db:seed
+```
 
 How to run the test suite:
 ```
