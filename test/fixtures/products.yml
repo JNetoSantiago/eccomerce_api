@@ -6,6 +6,7 @@ one:
   published: true
   user: one
   category: one
+  quantity: 5
 
 two:
   title: Celular Xiaomi
@@ -13,6 +14,7 @@ two:
   published: true
   user: two
   category: two
+  quantity: 5
 
 three:
   title: TV LG 4K
@@ -20,3 +22,4 @@ three:
   published: false
   user: two
   category: two
+  quantity: 5

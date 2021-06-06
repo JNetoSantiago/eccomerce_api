@@ -22,7 +22,8 @@ module Api
 
       # POST /orders
       def create
-        order = current_user.orders.create(order_params)
+        order = Order.create! user: current_user
+        order.build_placements_with_product_ids_and_quantities(order_params[:product_ids_and_quantities])
 
         if order.save
           OrderMailer.send_confirmation(order).deliver
@@ -30,6 +31,8 @@ module Api
         else
           render json: { errors: order.errors }, status: :unprocessable_entity
         end
+      rescue StandardError => e
+        p e
       end
 
       protected
@@ -39,7 +42,7 @@ module Api
 
       private
       def order_params
-        params.require(:order).permit(:total, product_ids: [])
+        params.require(:order).permit(product_ids_and_quantities: [:product_id, :quantity])
       end
     end
   end
