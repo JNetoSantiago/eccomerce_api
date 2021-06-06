@@ -25,6 +25,7 @@ module Api
         order = current_user.orders.create(order_params)
 
         if order.save
+          OrderMailer.send_confirmation(order).deliver
           render json: order, status: :created
         else
           render json: { errors: order.errors }, status: :unprocessable_entity
