@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :tokens, only: [:create]
       resources :categories, only: [:show, :create, :update, :destroy]
       resources :products, only: [:index, :show, :create, :update, :destroy]
-      resources :orders, only: [:index, :show]
+      resources :orders, only: [:index, :show, :create]
     end
   end
 end

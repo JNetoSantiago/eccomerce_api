@@ -1,7 +1,8 @@
 module Api
   module V1
     class OrdersController < ApplicationController
-      before_action :check_login, only: [:index, :show]
+      before_action :order_params, only: [:create]
+      before_action :check_login, only: [:index, :show, :create]
 
       # GET /orders
       def index
@@ -19,9 +20,25 @@ module Api
         end
       end
 
+      # POST /orders
+      def create
+        order = current_user.orders.create(order_params)
+
+        if order.save
+          render json: order, status: :created
+        else
+          render json: { errors: order.errors }, status: :unprocessable_entity
+        end
+      end
+
       protected
       def check_login
         head :forbidden unless self.current_user
+      end
+
+      private
+      def order_params
+        params.require(:order).permit(:total, product_ids: [])
       end
     end
   end
