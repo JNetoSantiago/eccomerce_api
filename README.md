@@ -10,7 +10,7 @@ Project Dependencies:
 
 * Minitest
 
-* Kaminari - https://github.com/kaminari/kaminari
+* Pagy - https://github.com/ddnexus/pagy
 
 * Ransack - https://github.com/activerecord-hackery/ransack
 
