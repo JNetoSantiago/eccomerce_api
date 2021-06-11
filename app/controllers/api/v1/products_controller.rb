@@ -2,14 +2,24 @@
 module Api
   module V1
     class ProductsController < ApplicationController
+      include Paginable
+
       before_action :set_product, only: [:show, :update, :destroy]
       before_action :check_login, only: [:create, :update, :destroy]
       before_action :check_owner, only: [:update, :destroy]
 
       # GET /products
       def index
-        @products = Product.ransack(params[:q]).result
-        render json: ProductSerializer.new(@products).serializable_hash
+        @products = Product.page(current_page).per(per_page).ransack(params[:q]).result
+        options = {
+          links: {
+            first: api_v1_products_path(page: 1),
+            last: api_v1_products_path(page: @products.total_pages),
+            prev: api_v1_products_path(page: @products.prev_page),
+            next: api_v1_products_path(page: @products.next_page),
+          }
+        }
+        render json: ProductSerializer.new(@products, options).serializable_hash
       end
 
       # GET /product/:id
