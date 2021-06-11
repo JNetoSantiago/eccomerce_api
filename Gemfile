@@ -53,7 +53,7 @@ gem "bcrypt", "~> 3.1"
 
 gem "jwt", "~> 2.2"
 
-gem "fast_jsonapi", "~> 1.5"
+gem 'jsonapi-serializer'
 
 gem "bullet", "~> 6.1", :group => :development
 

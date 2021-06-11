@@ -1,10 +1,10 @@
 class ProductSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attributes :title, :price, :published
 
   # relationships
   belongs_to :user
   belongs_to :category
 
-  cache_options enabled: true, cache_length: 12.hours
+  cache_options store: Rails.cache, namespace: 'jsonapi-serializer', expires_in: 1.hour
 end

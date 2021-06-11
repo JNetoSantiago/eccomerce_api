@@ -18,9 +18,11 @@ Project Dependencies:
 
 * Bcrypt
 
-* Fast JSON API - https://github.com/Netflix/fast_jsonapi
+* Json Api Serializer- https://github.com/jsonapi-serializer/jsonapi-serializer
 
 * Bullet - https://github.com/flyerhzm/bullet
+
+* Byebug - https://github.com/deivid-rodriguez/byebug
 
 Configuration:
 ```
