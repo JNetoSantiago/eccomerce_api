@@ -20,6 +20,8 @@ Project Dependencies:
 
 * Fast JSON API - https://github.com/Netflix/fast_jsonapi
 
+* Bullet - https://github.com/flyerhzm/bullet
+
 Configuration:
 ```
 $ git clone git@github.com:JNetoSantiago/eccomerce_api.git
