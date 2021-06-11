@@ -45,3 +45,5 @@ How to run the test suite:
 ```
 rake test
 ```
+
+Reference: https://leanpub.com/apionrails6
