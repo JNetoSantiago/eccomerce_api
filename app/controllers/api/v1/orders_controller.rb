@@ -8,8 +8,9 @@ module Api
 
       # GET /orders
       def index
-        @orders = current_user.orders.page(current_page).per(per_page)
-        options = get_links_serializer_options('api_v1_orders_path', @orders)
+        @pagy, @orders = pagy(current_user.orders)
+        options = {}
+        options[:links] = get_links_serializer_options_(pagy_metadata(@pagy))
         render json: OrderSerializer.new(@orders, options).serializable_hash
       end
 

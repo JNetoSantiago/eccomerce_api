@@ -10,8 +10,9 @@ module Api
 
       # GET /products
       def index
-        @products = Product.includes(:user).page(current_page).per(per_page).ransack(params[:q]).result
-        options = get_links_serializer_options('api_v1_products_path', @products)
+        @pagy, @products = pagy(Product.includes(:user).ransack(params[:q]).result)
+        options = {}
+        options[:links] = get_links_serializer_options_(pagy_metadata(@pagy))
         options[:include] = [:user]
         render json: ProductSerializer.new(@products, options).serializable_hash
       end

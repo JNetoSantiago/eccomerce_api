@@ -40,9 +40,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# https://github.com/kaminari/kaminari
-gem "kaminari", "~> 1.2"
-
 # https://github.com/activerecord-hackery/ransack
 gem "ransack", "~> 2.4"
 
@@ -58,3 +55,6 @@ gem 'jsonapi-serializer'
 gem "bullet", "~> 6.1", :group => :development
 
 gem "rack-cors", "~> 1.1"
+
+# https://github.com/ddnexus/pagy
+gem 'pagy'
