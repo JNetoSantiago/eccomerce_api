@@ -58,3 +58,9 @@ gem "rack-cors", "~> 1.1"
 
 # https://github.com/ddnexus/pagy
 gem 'pagy'
+
+# https://github.com/chanzuckerberg/sorbet-rails
+gem 'sorbet-rails'
+
+# https://github.com/rubocop/rubocop-rails
+gem 'rubocop-rails', require: false
