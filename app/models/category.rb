@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# model for categories table
 class Category < ApplicationRecord
   # relationships
   has_many :products, dependent: :destroy
@@ -8,15 +11,14 @@ class Category < ApplicationRecord
   validates :status, presence: true
 
   # enums
-  enum status: [:disabled, :enabled]
-
+  enum status: { disabled: 0, enabled: 1 }
 
   def change_status
     case status
     when 'enabled'
-      self.update(status: :disabled)
+      update(status: :disabled)
     when 'disabled'
-      self.update(status: :enabled)
+      update(status: :enabled)
     end
   end
 end

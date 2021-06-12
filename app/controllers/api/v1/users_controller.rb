@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   module V1
+    # controller for users
     class UsersController < ApplicationController
-      before_action :set_user, only: [:show, :update, :destroy]
-      before_action :check_owner, only: [:update, :destroy]
+      before_action :set_user, only: %i[show update destroy]
+      before_action :check_owner, only: %i[update destroy]
 
       # GET /user/:id
       def show
@@ -37,6 +40,7 @@ module Api
       end
 
       private
+
       def set_user
         @user = User.find(params[:id])
       end
@@ -46,6 +50,7 @@ module Api
       end
 
       protected
+
       def check_owner
         head :forbidden unless @user.id == current_user&.id
       end

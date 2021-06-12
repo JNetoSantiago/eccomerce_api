@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# model for orders table
 class Order < ApplicationRecord
   # relationships
   belongs_to :user
@@ -13,7 +16,7 @@ class Order < ApplicationRecord
   before_validation :set_total!
 
   def set_total!
-    self.total = self.placements.map{ |placement| placement.product.price * placement.quantity }.sum
+    self.total = placements.map { |placement| placement.product.price * placement.quantity }.sum
   end
 
   def build_placements_with_product_ids_and_quantities(product_ids_and_quantities)

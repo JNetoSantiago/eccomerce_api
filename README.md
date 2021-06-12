@@ -24,6 +24,8 @@ Project Dependencies:
 
 * Byebug - https://github.com/deivid-rodriguez/byebug
 
+* Rubocop - https://github.com/rubocop/rubocop-rails
+
 Configuration:
 ```
 $ git clone git@github.com:JNetoSantiago/eccomerce_api.git

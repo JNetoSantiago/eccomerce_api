@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# module for authentication with JWT in header
 module Authenticable
   def current_user
     return @current_user if @current_user
@@ -7,6 +10,10 @@ module Authenticable
 
     decoded = JsonWebToken.decode(header)
 
-    @current_user = User.find(decoded[:user_id]) rescue ActiveRecord::RecordNotFound
+    @current_user = begin
+      User.find(decoded[:user_id])
+    rescue StandardError
+      ActiveRecord::RecordNotFound
+    end
   end
 end

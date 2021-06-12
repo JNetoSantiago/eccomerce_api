@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# send mail when order is created
 class OrderMailer < ApplicationMailer
   default from: 'no-reply@marketplace.com'
   def send_confirmation(order)

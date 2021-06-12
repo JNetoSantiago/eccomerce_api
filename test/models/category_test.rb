@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  test "category valid must be valid" do
-    assert_difference "Category.count", 1 do
+  test 'category valid must be valid' do
+    assert_difference 'Category.count', 1 do
       Category.create description: 'category name'
     end
   end

@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 module Api
   module V1
+    # controller for orders
     class OrdersController < ApplicationController
       include Paginable
 
       before_action :order_params, only: [:create]
-      before_action :check_login, only: [:index, :show, :create]
+      before_action :check_login, only: %i[index show create]
 
       # GET /orders
       def index
@@ -36,18 +39,18 @@ module Api
         else
           render json: { errors: order.errors }, status: :unprocessable_entity
         end
-      rescue StandardError => e
-        p e
       end
 
       protected
+
       def check_login
-        head :forbidden unless self.current_user
+        head :forbidden unless current_user
       end
 
       private
+
       def order_params
-        params.require(:order).permit(product_ids_and_quantities: [:product_id, :quantity])
+        params.require(:order).permit(product_ids_and_quantities: %i[product_id quantity])
       end
     end
   end

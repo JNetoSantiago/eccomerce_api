@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthenticableTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
@@ -23,5 +25,5 @@ class MockController
   def initialize
     mock_request = Struct.new(:headers)
     self.request = mock_request.new({})
-  end 
+  end
 end

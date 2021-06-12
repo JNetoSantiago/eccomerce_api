@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# verify if have disponible products
 class EnoughProductsValidator < ActiveModel::Validator
   def validate(record)
     record.placements.each do |placement|

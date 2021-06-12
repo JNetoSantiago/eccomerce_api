@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# model for placements table
 class Placement < ApplicationRecord
   # relashionships
   belongs_to :order
@@ -7,6 +10,6 @@ class Placement < ApplicationRecord
   after_create :decrement_product_quantity!
 
   def decrement_product_quantity!
-    product.decrement!(:quantity, quantity)
+    product.update(quantity: product.quantity - quantity)
   end
 end

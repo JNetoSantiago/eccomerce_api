@@ -1,12 +1,14 @@
+# frozen_string_literal: true
 
 module Api
   module V1
+    # controller for products
     class ProductsController < ApplicationController
       include Paginable
 
-      before_action :set_product, only: [:show, :update, :destroy]
-      before_action :check_login, only: [:create, :update, :destroy]
-      before_action :check_owner, only: [:update, :destroy]
+      before_action :set_product, only: %i[show update destroy]
+      before_action :check_login, only: %i[create update destroy]
+      before_action :check_owner, only: %i[update destroy]
 
       # GET /products
       def index
@@ -19,7 +21,7 @@ module Api
 
       # GET /product/:id
       def show
-        options = { include: [:user, :category] }
+        options = { include: %i[user category] }
         render json: ProductSerializer.new(@product, options).serializable_hash
       end
 
@@ -49,6 +51,7 @@ module Api
       end
 
       private
+
       def set_product
         @product = Product.find(params[:id])
       end
@@ -58,10 +61,11 @@ module Api
       end
 
       protected
+
       def check_login
-        head :forbidden unless self.current_user
+        head :forbidden unless current_user
       end
-      
+
       def check_owner
         head :forbidden unless @product.user_id == current_user&.id
       end

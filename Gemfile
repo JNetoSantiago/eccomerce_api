@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -27,7 +29,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -38,23 +40,23 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # https://github.com/activerecord-hackery/ransack
-gem "ransack", "~> 2.4"
+gem 'ransack', '~> 2.4'
 
 # https://github.com/faker-ruby/faker
-gem "faker", "~> 2.18"
+gem 'faker', '~> 2.18'
 
-gem "bcrypt", "~> 3.1"
+gem 'bcrypt', '~> 3.1'
 
-gem "jwt", "~> 2.2"
+gem 'jwt', '~> 2.2'
 
 gem 'jsonapi-serializer'
 
-gem "bullet", "~> 6.1", :group => :development
+gem 'bullet', '~> 6.1', group: :development
 
-gem "rack-cors", "~> 1.1"
+gem 'rack-cors', '~> 1.1'
 
 # https://github.com/ddnexus/pagy
 gem 'pagy'

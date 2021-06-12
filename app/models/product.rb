@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# model for products table
 class Product < ApplicationRecord
   # relationships
   belongs_to :user

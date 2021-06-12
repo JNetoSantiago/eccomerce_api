@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class TokensControllerTest < ActionDispatch::IntegrationTest
@@ -8,8 +10,8 @@ module Api
 
       test 'should get jwt token' do
         post api_v1_tokens_url,
-        params: { user: { email: @user.email, password: 'g00d_pa$$' } },
-        as: :json
+             params: { user: { email: @user.email, password: 'g00d_pa$$' } },
+             as: :json
 
         assert_response :success
 
@@ -19,8 +21,8 @@ module Api
 
       test 'should not get jwt token' do
         post api_v1_tokens_url,
-        params: { user: { email: @user.email, password: 'b@d_pa$$' } },
-        as: :json
+             params: { user: { email: @user.email, password: 'b@d_pa$$' } },
+             as: :json
 
         assert_response :unauthorized
       end
