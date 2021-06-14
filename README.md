@@ -10,6 +10,8 @@ Project Dependencies:
 
 * Minitest
 
+* Minitest Reporters - https://github.com/minitest-reporters/minitest-reporters
+
 * Pagy - https://github.com/ddnexus/pagy
 
 * Ransack - https://github.com/activerecord-hackery/ransack
